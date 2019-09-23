@@ -13,17 +13,18 @@ const double SHADOW_ALLOWANCE = 20;
 const double BAR_HEIGHT = 60;
 
 class FancyBottomNavigation extends StatefulWidget {
-  FancyBottomNavigation(
-      {@required this.tabs,
-      @required this.onTabChangedListener,
-      this.key,
-      this.initialSelection = 0,
-      this.circleColor,
-      this.activeIconColor,
-      this.inactiveIconColor,
-      this.textColor,
-      this.barBackgroundColor})
-      : assert(onTabChangedListener != null),
+  FancyBottomNavigation({
+    @required this.tabs,
+    @required this.onTabChangedListener,
+    this.key,
+    this.initialSelection = 0,
+    this.circleColor,
+    this.activeIconColor,
+    this.inactiveIconColor,
+    this.textColor,
+    this.barBackgroundColor,
+    this.activeIconSize,
+  })  : assert(onTabChangedListener != null),
         assert(tabs != null),
         assert(tabs.length > 1 && tabs.length < 5);
 
@@ -33,6 +34,7 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color inactiveIconColor;
   final Color textColor;
   final Color barBackgroundColor;
+  final double activeIconSize;
   final List<TabData> tabs;
   final int initialSelection;
 
@@ -202,12 +204,13 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                                 opacity: _circleIconAlpha,
                                 child: Icon(
                                   activeIcon,
+                                  size: widget.activeIconSize,
                                   color: activeIconColor,
                                 ),
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
