@@ -252,7 +252,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 }
 
 class TabData {
-  TabData({@required this.iconData, @required this.title, this.iconSize, this.onclick});
+  TabData({@required this.iconData, @required this.title, this.iconSize,this.onclick});
 
   IconData iconData;
   String title;
