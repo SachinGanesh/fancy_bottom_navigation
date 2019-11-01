@@ -109,6 +109,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
     int selected = widget.tabs.indexWhere((tabData) => tabData.key == key);
 
     if (mounted) {
+      widget.controller.index = selected;
       setState(() {
         currentSelected = selected;
         _circleAlignX = -1 + (2 / (widget.tabs.length - 1) * selected);
