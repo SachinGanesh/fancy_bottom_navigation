@@ -24,6 +24,7 @@ class FancyBottomNavigation extends StatefulWidget {
     this.textColor,
     this.barBackgroundColor,
     this.activeIconSize,
+    this.controller,
   })  : assert(onTabChangedListener != null),
         assert(tabs != null),
         assert(tabs.length > 1 && tabs.length < 5);
@@ -37,6 +38,7 @@ class FancyBottomNavigation extends StatefulWidget {
   final double activeIconSize;
   final List<TabData> tabs;
   final int initialSelection;
+  final TabController controller;
 
   final Key key;
 
@@ -98,6 +100,9 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   void initState() {
     super.initState();
     _setSelected(widget.tabs[widget.initialSelection].key);
+    widget.controller.addListener(() {
+      _setSelected(widget.tabs[widget.controller.index].key);
+    });
   }
 
   _setSelected(UniqueKey key) {
@@ -252,7 +257,11 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 }
 
 class TabData {
-  TabData({@required this.iconData, @required this.title, this.iconSize,this.onclick});
+  TabData(
+      {@required this.iconData,
+      @required this.title,
+      this.iconSize,
+      this.onclick});
 
   IconData iconData;
   String title;
